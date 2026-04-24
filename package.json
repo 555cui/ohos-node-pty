@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git://github.com/microsoft/node-pty.git"
   },
+  "binary": {
+    "napi_versions": [8]
+  },
   "files": [
     "binding.gyp",
     "lib/",

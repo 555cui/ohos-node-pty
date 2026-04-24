@@ -76,8 +76,10 @@
           'sources': [
             'src/unix/pty.cc',
           ],
+          'include_dirs': ['deps/electron-napi-library/include'],
           'libraries': [
-            '-lutil'
+            '-lutil',
+            '<(module_root_dir)/deps/electron-napi-library/lib/libshim.a'
           ],
           'cflags': ['-Wall', '-O2', '-D_FORTIFY_SOURCE=2'],
           'conditions': [
@@ -89,7 +91,8 @@
                 '-lutil'
               ]
             }]
-          ]
+          ],
+          "defines": [ "HIDE_NAPI_AND_UV" ]
         }
       ]
     }],
