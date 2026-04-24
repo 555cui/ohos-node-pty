@@ -52,3 +52,19 @@ interface IUnixOpenProcess {
   slave: number;
   pty: string;
 }
+
+declare namespace NodeJS {
+  interface Process extends EventEmitter {
+    platform: 'aix'
+      | 'android'
+      | 'darwin'
+      | 'freebsd'
+      | 'linux'
+      | 'openbsd'
+      | 'sunos'
+      | 'win32'
+      | 'cygwin'
+      | 'netbsd'
+      | 'openharmony';
+  }
+}
