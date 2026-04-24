@@ -10,6 +10,15 @@ export function assign(target: any, ...sources: any[]): any {
 
 
 export function loadNativeModule(name: string): {dir: string, module: any} {
+  // Load from sanbox dir when platform is openharmony
+  if (process.platform === 'openharmony') {
+    const dir = '/data/storage/el1/bundle/libs/arm64'
+    try {
+      return { dir, module: require(`${dir}/${name}.node`)}
+    } catch (e) {
+      throw new Error(`Failed to load native module: ${name}.node, checked: ${dir}: ${e}`);
+    }
+  }
   // Check build, debug, and then prebuilds.
   const dirs = ['build/Release', 'build/Debug', `prebuilds/${process.platform}-${process.arch}`];
   // Check relative to the parent dir for unbundled and then the current dir for bundled
